@@ -9,22 +9,38 @@
 	class Test extends React.Component {
 		constructor(props) {
 			super(props);
+			this.state = {
+				progress: 0,
+				score: 0
+			}
+		}
+
+		next() {
+			this.setState({
+				progress: this.state.progress + 1
+			});
 		}
 
 		render() {
 			return (
 				<div className="text-center">
-					<h2>Australia is wider than the moon!</h2>
+					<h2>{this.props.facts[this.state.progress]}</h2>
 					<div className="btns">
-						<button className="btn btn-default">True</button>
-						<button className="btn btn-default">False</button>
+						<button className="btn btn-default" onClick={this.next.bind(this)}>True</button>
+						<button className="btn btn-default" onClick={this.next.bind(this)}>False</button>
 				    </div>
 				</div>
 			)
 		}
 	}
 
-	ReactDOM.render(<Test />, document.getElementById("app"));
+	var facts = [
+		"Australia is wider than the moon!",
+		"Paper can be folded in half 12 times.",
+		"Apollo 11 mission required less then 150,000 lines of code"
+	];
+
+	ReactDOM.render(<Test facts={facts}/>, document.getElementById("app"));
 </script>	
 
 {% endblock %}
