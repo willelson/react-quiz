@@ -17,7 +17,7 @@
   		<tr>
     		<td>{{ score.name }}</td>
     		<td>{{ score.points }}</td>
-    		<td>{{ score.date }}</td>
+    		<td>{{ score.date.strftime('%-d %B %Y') }}</td>
   		</tr>
   		{% endfor %}
 	</tbody>
