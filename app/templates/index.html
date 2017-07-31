@@ -17,7 +17,7 @@
 
 		next(event) {
 			const facts = this.props.facts;
-			let answer = (event.target.innerHTML.toLowerCase() === 'true');
+			let answer = (event.target.innerHTML.toLowerCase() == 'true');
 			if (answer === facts[this.state.progress].truth) {
 				this.setState({
 					score: this.state.score + 1
@@ -26,6 +26,23 @@
 			this.setState({
 				progress: this.state.progress + 1
 			});
+		}
+
+		restart() {
+			console.log(this.state.progress);
+			this.setState({
+				progress: 0,
+				score: 0
+			});
+		}
+
+		handleChange(event) {
+			this.setState({name: event.target.value});
+		}
+
+		handleSubmit(event) {
+			alert('A name was submitted: ' + this.state.name);
+			event.preventDefault();
 		}
 
 		renderQ() {
@@ -42,7 +59,18 @@
 
 		renderEnd() {
 			return (
-				<h2>You scored {this.state.score} / {this.state.progress}</h2>
+				<div className="text-center">
+					<h2>You scored {this.state.score} / {this.state.progress}</h2>
+					<form onSubmit={this.handleSubmit.bind(this)}>
+						<label>
+							Name:
+							<input type="text" value={this.state.value} onChange={this.handleChange.bind(this)} />
+						</label>
+						<input className="btn btn-sm btn-primary" type="submit" value="Submit" />
+					</form>
+					<button className="btn btn-default" onClick={this.restart.bind(this)}>Restart</button>
+					
+				</div>
 			)
 		}
 
