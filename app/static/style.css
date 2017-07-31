@@ -1,5 +1,12 @@
-html, body {
-  margin-top:20px;
+html {
+  
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+	margin-top:20px;
+	margin-bottom: 60px;
 }
 
 .btns {
@@ -11,5 +18,10 @@ html, body {
 	margin: 0 15px 0 15px;
 }
 
+.btn:active {
+   outline: none !important;
+}
 
-
+.btn:focus {
+  outline: none;
+}
