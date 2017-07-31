@@ -1,6 +1,7 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, request, abort, redirect, jsonify
 from app import app, db 
 from models import Score
+import json
 
 @app.route('/')
 def index():
@@ -14,7 +15,15 @@ def leaderboard():
 
 
 
+@app.route('/submit', methods=["POST"])
+def submitScore():
+	data = json.loads(request.data)
+	new_score = Score(data['name'], data['score'])
 
+	db.session.add(new_score)
+	db.session.commit()
+
+	return jsonify(data), 200
 
 
 
