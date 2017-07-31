@@ -3,6 +3,25 @@
 
 {% block content %}
 
-Leaderboard WIP...
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Score</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for score in leaderboard %}
+  		<tr>
+    		<td>{{ score.name }}</td>
+    		<td>{{ score.points }}</td>
+    		<td>{{ score.date }}</td>
+  		</tr>
+  		{% endfor %}
+	</tbody>
+</table>
+
 
 {% endblock %}
