@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>React Quiz</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="{% if 'leaderboard' not in request.url_rule.rule %}active{% endif %}">
+				<a href="{{ url_for('index') }}">Quiz</a>
+			</li>
+			<li class="{% if 'leaderboard' in request.url_rule.rule %}active{% endif %}">
+				<a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+			</li>
+		</ul>
+		{% block content %}{% endblock %}
+	</div>
+
+	<script src="https://unpkg.com/react@latest/dist/react.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js" charset="utf-8"></script>
+</body>
+</html>
