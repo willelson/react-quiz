@@ -15,16 +15,23 @@
 			}
 		}
 
-		next() {
+		next(event) {
+			const facts = this.props.facts;
+			let answer = (event.target.innerHTML.toLowerCase() === 'true');
+			if (answer === facts[this.state.progress].truth) {
+				this.setState({
+					score: this.state.score + 1
+				});
+			}
 			this.setState({
 				progress: this.state.progress + 1
 			});
 		}
 
-		render() {
+		renderQ() {
 			return (
 				<div className="text-center">
-					<h2>{this.props.facts[this.state.progress]}</h2>
+					<h2>{this.props.facts[this.state.progress].text}</h2>
 					<div className="btns">
 						<button className="btn btn-default" onClick={this.next.bind(this)}>True</button>
 						<button className="btn btn-default" onClick={this.next.bind(this)}>False</button>
@@ -32,12 +39,26 @@
 				</div>
 			)
 		}
+
+		renderEnd() {
+			return (
+				<h2>You scored {this.state.score} / {this.state.progress}</h2>
+			)
+		}
+
+		render() {
+			if (this.state.progress < this.props.facts.length) {
+				return this.renderQ();
+			} else {
+				return this.renderEnd();
+			}
+		}
 	}
 
 	var facts = [
-		"Australia is wider than the moon!",
-		"Paper can be folded in half 12 times.",
-		"Apollo 11 mission required less then 150,000 lines of code"
+		{text: "Australia is wider than the moon!", truth: true},
+		{text: "Paper can be folded in half 12 times.", truth: true},
+		{text: "Apollo 11 mission required less then 150,000 lines of code", truth: true}
 	];
 
 	ReactDOM.render(<Test facts={facts}/>, document.getElementById("app"));
