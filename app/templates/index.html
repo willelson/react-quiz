@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>React Quiz</title>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-	<div class="container">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#">Quiz</a></li>
-			<li><a href="#">Leaderboard</a></li>
-		</ul>
-		<div id="app"></div>
-	</div>
+<!-- extend base layout -->
+{% extends "base.html" %}
 
-	<script type="text/babel">
-		class Test extends React.Component {
-			constructor(props) {
-				super(props);
-			}
+{% block content %}
 
-			render() {
-				return (
-					<h2>Hello, World!</h2>
-				)
-			}
+<div id="app"></div>
+
+<script type="text/babel">
+	class Test extends React.Component {
+		constructor(props) {
+			super(props);
 		}
 
-		ReactDOM.render(<Test />, document.getElementById("app"));
-	</script>	
+		render() {
+			return (
+				<div className="text-center">
+					<h2>Australia is wider than the moon!</h2>
+					<div className="btns">
+						<button className="btn btn-default">True</button>
+						<button className="btn btn-default">False</button>
+				    </div>
+				</div>
+			)
+		}
+	}
 
-	<script src="https://unpkg.com/react@latest/dist/react.js" charset="utf-8"></script>
-    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js" charset="utf-8"></script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js" charset="utf-8"></script>
-</body>
-</html>
+	ReactDOM.render(<Test />, document.getElementById("app"));
+</script>	
+
+{% endblock %}
