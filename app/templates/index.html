@@ -77,8 +77,8 @@
 				<div className="text-center">
 					<h2>{this.props.facts[this.state.progress].text}</h2>
 					<div className="btns">
-						<button className="btn btn-default" onClick={this.next.bind(this)}>True</button>
-						<button className="btn btn-default" onClick={this.next.bind(this)}>False</button>
+						<button className="btn btn-success" onClick={this.next.bind(this)}>True</button>
+						<button className="btn btn-danger" onClick={this.next.bind(this)}>False</button>
 				    </div>
 				</div>
 			)
@@ -112,9 +112,13 @@
 	}
 
 	var facts = [
-		{text: "Australia is wider than the moon!", truth: true},
+		{text: "Australia is wider than the moon.", truth: true},
 		{text: "Paper can be folded in half 12 times.", truth: true},
-		{text: "Apollo 11 mission required less then 150,000 lines of code", truth: true}
+		{text: "Apollo 11 mission required less then 150,000 lines of code.", truth: true},
+		{text: "The Great Wall of China is the only human-made object visible from the Moon or from space.", truth: false},
+		{text: "Lightning will never strike the same place twice.", truth: false},
+		{text: "The Sun contains 99.8% of the mass in our solar system.", truth: true},
+		{text: "A ball of glass will bounce higher than a ball of rubber.", truth: true}
 	];
 
 	ReactDOM.render(<Test facts={facts}/>, document.getElementById("app"));
