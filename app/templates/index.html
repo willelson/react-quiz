@@ -10,8 +10,10 @@
 		constructor(props) {
 			super(props);
 			this.state = {
-				progress: 3,
-				score: 0
+				progress: 0,
+				score: 0,
+				message: "",
+				allowScoreSubmission: true
 			}
 		}
 
@@ -32,7 +34,9 @@
 			console.log(this.state.progress);
 			this.setState({
 				progress: 0,
-				score: 0
+				score: 0,
+				message: "",
+				allowScoreSubmission: true
 			});
 		}
 
@@ -41,22 +45,31 @@
 		}
 
 		handleSubmit(event) {
+			let _this = this;
 			event.preventDefault();
+			if (this.state.allowScoreSubmission) {
+				let payload = {
+					score: this.state.score,
+					name: this.state.name
+				}
 
-			let payload = {
-				score: this.state.score,
-				name: this.state.name
-			}
-
-			fetch('http://localhost:8080/submit', {
-				method: 'POST',
-				body: JSON.stringify(payload)
-			})
-			.then(function(response) {
-	     		if (response.status == 200) {
-	     			console.log("Success!");
-	     		}
-		    });
+				fetch('http://localhost:8080/submit', {
+					method: 'POST',
+					body: JSON.stringify(payload)
+				})
+				.then(function(response) {
+		     		if (response.status == 200) {
+		     			_this.setState({
+		     				message: "Your score was posted to the leaderboard!",
+		     				allowScoreSubmission: false
+		     			});
+		     		}
+			    });
+		    } else {
+		    	_this.setState({
+		    		message: "You've already submitted your score! Head over to the leaderboard to see how you did."
+		    	});
+		    }
 		}
 
 		renderQ() {
@@ -82,6 +95,7 @@
 						</label>
 						<input className="btn btn-sm btn-primary" type="submit" value="Submit" />
 					</form>
+					<p>{this.state.message}</p>
 					<button className="btn btn-default" onClick={this.restart.bind(this)}>Restart</button>
 					
 				</div>
