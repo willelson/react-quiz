@@ -6,3 +6,7 @@ html, body {
   margin-top: 25px;
   display: block-inline;  
 }
+
+.btns button {
+	margin: 0 15px 0 15px;
+}
