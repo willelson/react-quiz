@@ -3,9 +3,14 @@
 <head>
 	<title>React Quiz</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">Quiz</a></li>
+			<li><a href="#">Leaderboard</a></li>
+		</ul>
 		<div id="app"></div>
 	</div>
 
