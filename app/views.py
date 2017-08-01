@@ -1,6 +1,6 @@
 from flask import render_template, url_for, request, abort, redirect, jsonify
 from app import app, db 
-from models import Score
+from .models import Score
 import json
 
 @app.route('/')
